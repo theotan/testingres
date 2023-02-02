@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: abc-dp-kafka-connectors-dev
+  annotations:
+   alb.ingress.kubernetes.io/group.name: kafka-connects-dev-apiservices
+   alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+   alb.ingress.kubernetes.io/healthcheck-path: /
+   alb.ingress.kubernetes.io/load-balancer-name: kafka-connectors-dev-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/success-codes: "200"
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: abc-dp-kafka-connectors
+            port:
+              number: 8083
+        path: /
+        pathType: ImplementationSpecific
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: abc-dp-kafka-connectors-qa
+  annotations:
+   alb.ingress.kubernetes.io/group.name: kafka-connects-qa-apiservices
+   alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+   alb.ingress.kubernetes.io/healthcheck-path: /
+   alb.ingress.kubernetes.io/load-balancer-name: kafka-connectors-qa-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/success-codes: "200"
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: abc-dp-kafka-connectors
+            port:
+              number: 8083
+        path: /
+        pathType: ImplementationSpecific

@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: abc-nft-asset-dev
+  annotations:
+   alb.ingress.kubernetes.io/group.name: abc-nft-asset-dev-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: abc-nft-asset-dev-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: abc-nft-asset-abc-services-helm
+            port:
+              number: 3000
+        path: /*
+        pathType: ImplementationSpecific
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: abc-nft-asset-qa
+  annotations:
+   alb.ingress.kubernetes.io/group.name: abc-nft-asset-qa-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: abc-nft-asset-qa-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: abc-nft-asset-abc-services-helm
+            port:
+              number: 3000
+        path: /*
+        pathType: ImplementationSpecific

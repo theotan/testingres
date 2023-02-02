@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: bizcare-api-dev
+  annotations:
+   alb.ingress.kubernetes.io/group.name: bizcare-api-dev-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: bizcare-api-dev-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: bizcare-api-abc-services-helm
+            port:
+              number: 80
+        path: /*
+        pathType: ImplementationSpecific
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: bizcare-api-qa
+  annotations:
+   alb.ingress.kubernetes.io/group.name: bizcare-api-qa-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: bizcare-api-qa-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: bizcare-api-abc-services-helm
+            port:
+              number: 80
+        path: /*
+        pathType: ImplementationSpecific

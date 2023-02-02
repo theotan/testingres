@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: ksqldb-cli-dev
+  annotations:
+   alb.ingress.kubernetes.io/group.name: ksqldb-cli-dev-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: ksqldb-cli-dev-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: ksqldb-cli
+            port:
+              number: 8081
+        path: /*
+        pathType: ImplementationSpecific
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: ksqldb-cli-qa
+  annotations:
+   alb.ingress.kubernetes.io/group.name: ksqldb-cli-qa-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: ksqldb-cli-qa-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: ksqldb-cli
+            port:
+              number: 8081
+        path: /*
+        pathType: ImplementationSpecific

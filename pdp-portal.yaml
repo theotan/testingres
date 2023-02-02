@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: pdp-portal-dev
+  annotations:
+   alb.ingress.kubernetes.io/group.name: pdp-portal-dev-uiservices
+   alb.ingress.kubernetes.io/load-balancer-name: pdp-portal-dev-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: pdp-portal
+            port:
+              number: 3000
+        path: /*
+        pathType: ImplementationSpecific
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: pdp-portal-qa
+  annotations:
+   alb.ingress.kubernetes.io/group.name: pdp-portal-qa-uiservices
+   alb.ingress.kubernetes.io/load-balancer-name: pdp-portal-qa-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: pdp-portal
+            port:
+              number: 3000
+        path: /*
+        pathType: ImplementationSpecific

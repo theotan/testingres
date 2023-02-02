@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-retainer
+  namespace: abc-keycloak20-dev
+  annotations:
+   alb.ingress.kubernetes.io/group.name: abc-keycloak20-dev-apiservices
+   alb.ingress.kubernetes.io/load-balancer-name: abc-keycloak20-dev-services
+   alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:975292647169:certificate/fb9431aa-d6a7-4552-a571-fb322e69575d
+   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80},{"HTTPS":443}]'
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: abc-keycloak20
+            port:
+              number: 8080
+        path: /*
+        pathType: ImplementationSpecific
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:975292647169:certificate/fb9431aa-d6a7-4552-a571-fb322e69575d
+    alb.ingress.kubernetes.io/group.name: abc-keycloak20-qa-apiservices
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+    alb.ingress.kubernetes.io/healthcheck-path: /health/live
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80},{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/load-balancer-name: abc-keycloak20-qa-services
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+  name: alb-retainer
+  namespace: abc-keycloak20-qa
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: abc-keycloak20
+                port:
+                  number: 8080
+            path: /*
+            pathType: ImplementationSpecific
