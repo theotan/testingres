@@ -9,6 +9,9 @@ resources:
   - ./ksql-schema-registry.yaml
   - ./ksqldb-cli.yaml
   - ./latitude-console.yaml
-  - ./latitude-loyal.yaml
   - ./pdp-portal.yaml
+  - ./latitude-loyal-dev.yaml
+  - ./latitude-loyal-qa.yaml
 
+bases:
+  - ./
