@@ -11,3 +11,4 @@ resources:
   - ./latitude-console.yaml
   - ./pdp-portal.yaml
   - ./latitude-loyal.yaml
+  - ./ksqldb-server.yaml
