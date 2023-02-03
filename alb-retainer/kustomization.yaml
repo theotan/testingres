@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./abc-dp-kafka-connector.yaml
+  - ./abc-keycloak20.yaml
+  - ./abc-nft-asset.yaml
+  - ./bizcare-api.yaml
+  - ./ksql-schema-registry.yaml
+  - ./ksqldb-cli.yaml
+  - ./latitude-console.yaml
+  - ./latitude-loyal.yaml
+  - ./pdp-portal.yaml
