@@ -20,3 +20,26 @@ spec:
               number: 3000
         path: /*
         pathType: ImplementationSpecific
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb-latitude-loyalty-qa
+  namespace: latitude-qa
+  annotations:
+   alb.ingress.kubernetes.io/group.name: latitude-loyalty-qa-uiservices
+   alb.ingress.kubernetes.io/load-balancer-name: latitude-loyalty-qa-services
+   alb.ingress.kubernetes.io/scheme: internal
+   alb.ingress.kubernetes.io/target-type: ip
+   kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: latitude-loyalty
+            port:
+              number: 3000
+        path: /*
+        pathType: ImplementationSpecific
