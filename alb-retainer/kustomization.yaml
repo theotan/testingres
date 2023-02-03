@@ -11,3 +11,6 @@ resources:
   - ./latitude-console.yaml
   - ./latitude-loyal.yaml
   - ./pdp-portal.yaml
+
+bases:
+  - ./
