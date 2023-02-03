@@ -10,5 +10,4 @@ resources:
   - ./ksqldb-cli.yaml
   - ./latitude-console.yaml
   - ./pdp-portal.yaml
-  - ./latitude-loyal-dev.yaml
-  - ./latitude-loyal-qa.yaml
+  - ./latitude-loyal.yaml
