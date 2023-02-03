@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-ksqldb-registry-dev
   namespace: ksql-schema-registry-dev
   annotations:
    alb.ingress.kubernetes.io/group.name: ksql-schema-dev-apiservices
@@ -24,7 +24,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-ksqldb-registry-dev
   namespace: ksql-schema-registry-qa
   annotations:
    alb.ingress.kubernetes.io/group.name: ksql-schema-qa-apiservices

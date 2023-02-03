@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-nft-asset-dev
   namespace: abc-nft-asset-dev
   annotations:
    alb.ingress.kubernetes.io/group.name: abc-nft-asset-dev-apiservices
@@ -26,7 +26,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-nft-asset-qa
   namespace: abc-nft-asset-qa
   annotations:
    alb.ingress.kubernetes.io/group.name: abc-nft-asset-qa-apiservices

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-keycloak20-qa
   namespace: abc-keycloak20-dev
   annotations:
    alb.ingress.kubernetes.io/group.name: abc-keycloak20-dev-apiservices
@@ -38,7 +38,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/target-type: ip
     kubernetes.io/ingress.class: alb
-  name: alb-retainer
+  name: alb-keycloak20-qa
   namespace: abc-keycloak20-qa
 spec:
   rules:

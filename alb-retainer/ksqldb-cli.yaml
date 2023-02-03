@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-ksqldb-cli-qa
   namespace: ksqldb-cli-dev
   annotations:
    alb.ingress.kubernetes.io/group.name: ksqldb-cli-dev-apiservices
@@ -24,7 +24,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-retainer
+  name: alb-ksqldb-cli-qa
   namespace: ksqldb-cli-qa
   annotations:
    alb.ingress.kubernetes.io/group.name: ksqldb-cli-qa-apiservices
