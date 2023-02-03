@@ -12,6 +12,3 @@ resources:
   - ./pdp-portal.yaml
   - ./latitude-loyal-dev.yaml
   - ./latitude-loyal-qa.yaml
-
-bases:
-  - ./
